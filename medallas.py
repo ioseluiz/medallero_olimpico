@@ -175,7 +175,7 @@ def consultar_mayor_cantidad(_medallas):
         if cantidad == cantidad_mayor:
             mayor.append(paises[contador])
         contador +=1
-    
+    #print(mayor)
     if len(mayor) == 1:
         print(f'Pais con mayor cantidad de medallas: {mayor[0]} con {cantidades[0]} medallas')
     else:
@@ -187,6 +187,7 @@ def consultar_mayor_cantidad(_medallas):
     datos_mayor = []
     for pais in mayor:
         deportes = buscar_deportes(_medallas,pais) # lista
+        #print(deportes)
         for deporte in deportes:
             datos = contabilizar_pais_deporte_tipo(_medallas, pais,deporte) # diccionario
             datos_mayor.append(datos)
@@ -199,7 +200,8 @@ def buscar_deportes(_medallas, pais):
     deportes = []
     for medalla in _medallas:
         if medalla['pais'] == pais:
-            deportes.append(medalla['deporte'])
+            if (medalla['deporte'] not in deportes):
+                deportes.append(medalla['deporte'])
     return deportes
 
 
@@ -257,8 +259,8 @@ def listar_medallas_deporte(_medallas):
 def main():
     
     medallas = leer_file('medallas.txt')
-    if medallas:
-        print(medallas)
+    #if medallas:
+        #print(medallas)
 
     menuControl = True
     
